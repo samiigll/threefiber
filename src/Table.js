@@ -1,20 +1,20 @@
+import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import { useRef, useEffect } from "react";
 
-export default function Table(props) {
+function Table(props) {
+  // Referans Oluşturma
   const groupRef = useRef();
-  const { nodes, materials } = useGLTF("/table.gltf");
 
-  useEffect(() => {
-    console.log("nodes", nodes);
-    console.log("materials", materials);
-  }, [nodes, materials]);
+  // Model Yükleme
+  const { nodes } = useGLTF("/models/table.gltf");
 
+  // Geometri Kontrolü
   if (!nodes || !nodes.table) {
     console.error("Table geometry not found in nodes.");
     return null;
   }
 
+  // Masa Render Etme
   return (
     <group ref={groupRef} {...props} dispose={null}>
       <mesh castShadow receiveShadow geometry={nodes.table.geometry}>
@@ -23,3 +23,5 @@ export default function Table(props) {
     </group>
   );
 }
+
+export default Table;
