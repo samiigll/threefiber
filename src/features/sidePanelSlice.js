@@ -1,18 +1,18 @@
-// src/features/sidePanelSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
-export const sidePanelSlice = createSlice({
+const initialState = {
+  tabValue: "1",
+};
+
+const sidePanelSlice = createSlice({
   name: "sidePanel",
-  initialState: {
-    tabValue: "1",
-  },
+  initialState,
   reducers: {
-    setTabValue: (state, action) => {
+    setTabValue(state, action) {
       state.tabValue = action.payload;
     },
   },
 });
 
 export const { setTabValue } = sidePanelSlice.actions;
-
 export default sidePanelSlice.reducer;
